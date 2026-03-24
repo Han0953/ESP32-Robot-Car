@@ -21,52 +21,6 @@ Sasis: Kit Robot 3 Roda / 4 Roda
 📌 Skema Pengabelan (Pin Mapping)
 <img width="974" height="585" alt="image" src="https://github.com/user-attachments/assets/1431247c-1d74-4544-945f-c034a9f4352d" />
 
-ESP32 Pin
-Komponen
-Deskripsi
-VIN
-Power 5V
-Input Daya ESP32
-GND
-GND
-Ground Bersama
-
-D14
-
-ENA
-
-PWM Motor Kanan
-
-D27
-
-IN1
-
-Arah Motor Kanan
-
-D26
-
-IN2
-
-Arah Motor Kanan
-
-D25
-
-IN3
-
-Arah Motor Kiri
-
-D33
-
-IN4
-
-Arah Motor Kiri
-
-D32
-
-ENB
-
-PWM Motor Kiri
-
 📱 Konfigurasi Aplikasi (MIT App Inventor)
 IP Address: 192.168.4.1
 Slider Speed:
