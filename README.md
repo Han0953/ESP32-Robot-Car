@@ -5,17 +5,17 @@
 ![App](https://img.shields.io/badge/App-MIT%20App%20Inventor-orange?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-A smart, wireless robotic car powered by the **ESP32** microcontroller[cite: 1]. The robot operates as an independent **WiFi Access Point** (Hotspot) and is controlled in real-time through an Android mobile application built using **MIT App Inventor**[cite: 1].
+A smart, wireless robotic car powered by the **ESP32** microcontroller The robot operates as an independent **WiFi Access Point** (Hotspot) and is controlled in real-time through an Android mobile application built using **MIT App Inventor**
 
 ---
 
 ## 📸 Overview & Features
 
-- 📶 **Standalone Access Point (AP) Mode:** The robot creates its own WiFi hotspot (`RobotESP32_WiFi`) with IP `192.168.4.1`[cite: 1]. No external router or internet connectivity required.
-- 🕹️ **Full Motion Control:** Supports real-time commands: Forward, Backward, Turn Left, Turn Right, and Stop via HTTP GET requests[cite: 1].
-- ⚡ **Variable Speed Control (PWM):** Smooth motor speed control using Pulse Width Modulation (PWM) configured via a slider on the mobile app[cite: 1].
-- 📱 **Custom Android App:** Integrated graphical controller interface designed for mobile control[cite: 1].
-- 🛡️ **Brownout Protected:** Recommended dual-power delivery setup to prevent system resets during high motor loads[cite: 1].
+- 📶 **Standalone Access Point (AP) Mode:** The robot creates its own WiFi hotspot (`RobotESP32_WiFi`) with IP `192.168.4.1` No external router or internet connectivity required.
+- 🕹️ **Full Motion Control:** Supports real-time commands: Forward, Backward, Turn Left, Turn Right, and Stop via HTTP GET requests
+- ⚡ **Variable Speed Control (PWM):** Smooth motor speed control using Pulse Width Modulation (PWM) configured via a slider on the mobile app
+- 📱 **Custom Android App:** Integrated graphical controller interface designed for mobile control
+- 🛡️ **Brownout Protected:** Recommended dual-power delivery setup to prevent system resets during high motor loads
 
 <p center">
   <img src="docs/images/Photo1.png" alt="ESP32 Robot Car" width="45%">
@@ -60,18 +60,18 @@ Wire the ESP32 development board to the L298N motor driver according to the mapp
 
 ### 1. Firmware Setup (Arduino IDE)
 1. Install **Arduino IDE** and add the **ESP32 Board Package**.
-2. Open the firmware source code (`.ino`) provided in this repository[cite: 1].
+2. Open the firmware source code (`.ino`) provided in this repository
 3. Select your ESP32 board model and correct COM port.
-4. Click **Upload** to flash the code onto the ESP32[cite: 1].
+4. Click **Upload** to flash the code onto the ESP32
 
 ### 2. Mobile Controller Setup (MIT App Inventor)
-1. Install the provided `.apk` application onto your Android device[cite: 1].
-2. Alternatively, open [MIT App Inventor](https://appinventor.mit.edu/) and import the `.aia` project file to edit the visual blocks or GUI[cite: 1].
-3. Ensure the target IP address in the app is configured to `192.168.4.1`[cite: 1].
+1. Install the provided `.apk` application onto your Android device
+2. Alternatively, open [MIT App Inventor](https://appinventor.mit.edu/) and import the `.aia` project file to edit the visual blocks or GUI
+3. Ensure the target IP address in the app is configured to `192.168.4.1`
 
 ### 3. Quick Start Guide
-1. Power up the robot car using the battery pack[cite: 1].
-2. On your smartphone, connect to the WiFi network **`RobotESP32_WiFi`**[cite: 1].
+1. Power up the robot car using the battery pack
+2. On your smartphone, connect to the WiFi network **`RobotESP32_WiFi`**
 3. Open the controller app, set your desired speed, and start driving! 🚗
 
 ---
@@ -86,7 +86,7 @@ Wire the ESP32 development board to the L298N motor driver according to the mapp
 
 ## 👤 Author & Acknowledgments
 
-Designed and developed by **Muhammad Rehan**[cite: 1].
+Designed and developed by **Muhammad Rehan**
 
 - **Course:** Mobile Development Program[cite: 1]
 - **Institution:** Universitas Muhammadiyah Riau[cite: 1]
