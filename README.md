@@ -18,7 +18,7 @@ A smart, wireless robotic car powered by the **ESP32** microcontroller[cite: 1].
 - 🛡️ **Brownout Protected:** Recommended dual-power delivery setup to prevent system resets during high motor loads[cite: 1].
 
 <p center">
-  <img src="docs/images/Photo1.jpg" alt="ESP32 Robot Car" width="45%">
+  <img src="docs/images/Photo1.png" alt="ESP32 Robot Car" width="45%">
   <img src="docs/schematics/Circuit Diagram.png" alt="App Interface" width="45%">
 </p>
 
