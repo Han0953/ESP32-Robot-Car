@@ -1,73 +1,93 @@
 # 🚗 ESP32 WiFi Robot Car
 
-Selamat datang di repositori **ESP32 WiFi Robot Car**! 
+![Board](https://img.shields.io/badge/Board-ESP32-blue?style=flat-square&logo=expressif)
+![Language](https://img.shields.io/badge/Language-C%2B%2B%20%2F%20Arduino-00599C?style=flat-square&logo=arduino)
+![App](https://img.shields.io/badge/App-MIT%20App%20Inventor-orange?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-Proyek ini adalah panduan lengkap dan kode sumber untuk membuat mobil robot pintar berbasis microcontroller **ESP32**. Robot ini beroperasi sebagai *Access Point* (WiFi Hotspot) mandiri dan dapat dikendalikan sepenuhnya melalui *smartphone* Android menggunakan aplikasi buatan sendiri (via MIT App Inventor).
-
----
-
-## ✨ Fitur Utama
-- **Koneksi Independen (AP Mode):** Robot memancarkan sinyal WiFi sendiri, tidak memerlukan router eksternal atau koneksi internet.
-- **Kontrol Gerak Penuh:** Maju, Mundur, Belok Kanan, Belok Kiri, dan Berhenti.
-- **Kontrol Kecepatan Halus (PWM):** Mengatur kecepatan motor secara *real-time* menggunakan antarmuka *slider* pada aplikasi.
-- **Anti-Captive Portal:** Dilengkapi dengan penanganan otomatis agar *smartphone* tidak memunculkan tanda seru (!) saat terhubung ke WiFi tanpa internet.
+A smart, wireless robotic car powered by the **ESP32** microcontroller[cite: 1]. The robot operates as an independent **WiFi Access Point** (Hotspot) and is controlled in real-time through an Android mobile application built using **MIT App Inventor**[cite: 1].
 
 ---
 
-## 🛠️ Perangkat Keras (Hardware) yang Dibutuhkan
-Untuk merakit robot ini, Anda membutuhkan komponen berikut:
-1. **Microcontroller:** 1x Board ESP32 (Versi 30 Pin)
-2. **Motor Driver:** 1x Modul Driver Motor L298N
-3. **Aktuator:** 2x Motor DC dengan Girbox (DC Gear Motor)
-4. **Sasis:** 1x Kit Sasis Robot (2 Roda / 4 Roda) + Roda Bebas (Caster Wheel)
-5. **Sumber Daya:** - 2x Baterai 18650 (Menghasilkan 7.4V)
-   - 1x Tempat Baterai (Battery Holder) 18650
-   - *Opsional tapi sangat disarankan:* Powerbank kecil/Step-down khusus untuk suplai daya ESP32.
-6. Kabel Jumper secukupnya (Male-to-Female & Male-to-Male)
+## 📸 Overview & Features
+
+- 📶 **Standalone Access Point (AP) Mode:** The robot creates its own WiFi hotspot (`RobotESP32_WiFi`) with IP `192.168.4.1`[cite: 1]. No external router or internet connectivity required.
+- 🕹️ **Full Motion Control:** Supports real-time commands: Forward, Backward, Turn Left, Turn Right, and Stop via HTTP GET requests[cite: 1].
+- ⚡ **Variable Speed Control (PWM):** Smooth motor speed control using Pulse Width Modulation (PWM) configured via a slider on the mobile app[cite: 1].
+- 📱 **Custom Android App:** Integrated graphical controller interface designed for mobile control[cite: 1].
+- 🛡️ **Brownout Protected:** Recommended dual-power delivery setup to prevent system resets during high motor loads[cite: 1].
 
 ---
 
-## 📌 Skema Pengabelan (Pin Mapping)
+## 🛠️ Hardware Components
 
-Pastikan Anda menyambungkan kabel dari ESP32 ke modul L298N sesuai dengan tabel berikut agar arah gerak robot sesuai dengan tombol di aplikasi:
+| Component | Quantity | Notes / Specifications |
+| :--- | :---: | :--- |
+| **ESP32 Dev Board** | 1x | 30-pin microcontroller board[cite: 1] |
+| **L298N Motor Driver** | 1x | Dual H-Bridge motor driver module[cite: 1] |
+| **DC Gear Motors** | 2x | 3V–6V DC gear motors with wheels[cite: 1] |
+| **Robot Chassis Kit** | 1x | Acrylic chassis with caster wheel[cite: 1] |
+| **18650 Li-ion Batteries** | 2x | 3.7V batteries (Series connection for ~7.4V)[cite: 1] |
+| **18650 Battery Holder** | 1x | Dual slot holder[cite: 1] |
+| **Power Switch** | 1x | Rocker switch (On/Off)[cite: 1] |
+| **Jumper Wires** | Set | Male-to-Male, Male-to-Female, Female-to-Female[cite: 1] |
 
-| ESP32 Pin | Sambungan ke L298N | Deskripsi Fungsi |
+---
+
+## 📌 Pin Mapping & Wiring Table
+
+Wire the ESP32 development board to the L298N motor driver according to the mapping below[cite: 1]:
+
+| ESP32 Pin | L298N Terminal | Function |
 | :---: | :---: | :--- |
-| **VIN** | `+5V` / External 5V | Input daya untuk menyalakan ESP32 |
-| **GND** | `GND` | Jalur Ground (Wajib disatukan dengan L298N) |
-| **D14** | `ENA` | Kontrol Kecepatan (PWM) Motor Kanan |
-| **D27** | `IN1` | Kontrol Arah Motor Kanan |
-| **D26** | `IN2` | Kontrol Arah Motor Kanan |
-| **D25** | `IN3` | Kontrol Arah Motor Kiri |
-| **D33** | `IN4` | Kontrol Arah Motor Kiri |
-| **D32** | `ENB` | Kontrol Kecepatan (PWM) Motor Kiri |
+| **VIN** | `5V` / External | ESP32 Power Input[cite: 1] |
+| **GND** | `GND` | Common Ground (Must be shared)[cite: 1] |
+| **GPIO 14** | `ENA` | Speed Control (PWM) - Right Motor[cite: 1] |
+| **GPIO 27** | `IN1` | Direction Control - Right Motor[cite: 1] |
+| **GPIO 26** | `IN2` | Direction Control - Right Motor[cite: 1] |
+| **GPIO 25** | `IN3` | Direction Control - Left Motor[cite: 1] |
+| **GPIO 33** | `IN4` | Direction Control - Left Motor[cite: 1] |
+| **GPIO 32** | `ENB` | Speed Control (PWM) - Left Motor[cite: 1] |
 
 ---
 
-## 💻 Instalasi dan Penggunaan
+## 💻 Software & Deployment
 
-### 1. Persiapan Kode (Arduino IDE)
-1. Pastikan Anda sudah menginstal **Arduino IDE** dan **ESP32 Board Package**.
-2. *Clone* atau unduh repositori ini.
-3. Buka file `esp32_robot_car.ino` di Arduino IDE.
-4. Sambungkan ESP32 ke komputer, pilih *Board* dan *Port* yang sesuai.
-5. Klik **Upload**.
+### 1. Firmware Setup (Arduino IDE)
+1. Install **Arduino IDE** and add the **ESP32 Board Package**.
+2. Open the firmware source code (`.ino`) provided in this repository[cite: 1].
+3. Select your ESP32 board model and correct COM port.
+4. Click **Upload** to flash the code onto the ESP32[cite: 1].
 
-### 2. Persiapan Aplikasi (MIT App Inventor)
-1. Instal aplikasi `.apk` yang tersedia di repositori ini ke HP Android Anda.
-2. Saat aplikasi terbuka, pastikan kolom IP Address berisi `192.168.4.1`.
-3. Pastikan *Slider* kecepatan memiliki nilai pengaturan `MinValue: 0` dan `MaxValue: 255`.
+### 2. Mobile Controller Setup (MIT App Inventor)
+1. Install the provided `.apk` application onto your Android device[cite: 1].
+2. Alternatively, open [MIT App Inventor](https://appinventor.mit.edu/) and import the `.aia` project file to edit the visual blocks or GUI[cite: 1].
+3. Ensure the target IP address in the app is configured to `192.168.4.1`[cite: 1].
 
-### 3. Cara Menjalankan
-1. Nyalakan sumber daya robot (baterai/power bank).
-2. Buka pengaturan WiFi di HP Android Anda.
-3. Cari dan hubungkan ke WiFi bernama **`RobotESP32_WiFi`**.
-4. Buka aplikasi kontrol, atur kecepatan pada slider, dan tekan tombol arah untuk menggerakkan robot!
+### 3. Quick Start Guide
+1. Power up the robot car using the battery pack[cite: 1].
+2. On your smartphone, connect to the WiFi network **`RobotESP32_WiFi`**[cite: 1].
+3. Open the controller app, set your desired speed, and start driving! 🚗
 
 ---
 
-## ⚠️ Pemecahan Masalah (Troubleshooting)
+## ⚠️ Troubleshooting (Brownout Issues)
 
-**Masalah: Robot tiba-tiba berhenti, tidak responsif, atau koneksi WiFi terputus saat digerakkan/mengubah kecepatan.**
-- **Penyebab:** Ini adalah masalah *Brownout*. Regulator 5V pada driver L298N tidak sanggup memberikan arus listrik yang stabil saat motor tiba-tiba menarik daya besar, sehingga ESP32 kekurangan daya dan me-*restart* dirinya sendiri.
-- **Solusi Terbaik:** Pisahkan sumber daya. Gunakan baterai 18650 *hanya* untuk memberi daya pada L298N (pin +12V), dan gunakan sumber daya 5V terpisah (seperti Power Bank via USB) untuk menyalakan ESP32. Pastikan pin `GND` pada ESP32 dan L298N tetap terhubung.
+* **Problem:** ESP32 disconnects, restarts, or loses WiFi connection when the motors start moving.
+* **Cause:** Voltage dip (*Brownout*) caused by motors drawing high surge currents through the L298N regulator, starving the ESP32.
+* **Solution:** Separate the power sources! Use the 18650 battery pack strictly for the L298N driver (`+12V` terminal), and power the ESP32 via a dedicated 5V power supply (such as a small Power Bank via Micro-USB/USB-C). **Ensure the GND pin on the ESP32 and L298N remain connected.**
+
+---
+
+## 👤 Author & Acknowledgments
+
+Designed and developed by **Muhammad Rehan**[cite: 1].
+
+- **Course:** Mobile Development Program[cite: 1]
+- **Institution:** Universitas Muhammadiyah Riau[cite: 1]
+- **Lecturer / Advisor:** Fauzan Azim, S.Pd., M.Kom.[cite: 1]
+
+---
+
+## 📄 License
+This repository is open-source and available under the [MIT License](LICENSE).
