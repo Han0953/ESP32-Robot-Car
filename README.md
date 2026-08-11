@@ -88,9 +88,9 @@ Wire the ESP32 development board to the L298N motor driver according to the mapp
 
 Designed and developed by **Muhammad Rehan**
 
-- **Course:** Mobile Development Program[cite: 1]
-- **Institution:** Universitas Muhammadiyah Riau[cite: 1]
-- **Lecturer / Advisor:** Fauzan Azim, S.Pd., M.Kom.[cite: 1]
+- **Course:** Mobile Development Program
+- **Institution:** Universitas Muhammadiyah Riau
+- **Lecturer / Advisor:** Fauzan Azim, S.Pd., M.Kom.
 
 ---
 
